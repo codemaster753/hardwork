@@ -1,33 +1,38 @@
-#include <graphics.h>
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <conio.h>
-#include<dos.h>
+#include <math.h>
+#include <graphics.h>
+#include <dos.h>
 
-void floodFill(int x, int y, int fillColor, int oldColor) {
-    if (getpixel(x, y) == oldColor) {
-        putpixel(x, y, fillColor);
-        floodFill(x + 1, y, fillColor, oldColor);
-        floodFill(x - 1, y, fillColor, oldColor);
-        floodFill(x, y + 1, fillColor, oldColor);
-        floodFill(x, y - 1, fillColor, oldColor);
+void floodfill(int x, int y, int oldcolor, int fillcolor) {
+    if (getpixel(x, y) != fillcolor && getpixel(x, y) == oldcolor) {
+        delay(1);
+
+        putpixel(x, y, fillcolor);
+
+        floodfill(x + 1, y, oldcolor, fillcolor);
+        floodfill(x - 1, y, oldcolor, fillcolor);
+        floodfill(x, y + 1, oldcolor, fillcolor);
+        floodfill(x, y - 1, oldcolor, fillcolor);
+        floodfill(x + 1, y + 1, oldcolor, fillcolor);
+        floodfill(x + 1, y - 1, oldcolor, fillcolor);
+        floodfill(x - 1, y - 1, oldcolor, fillcolor);
+        floodfill(x - 1, y + 1, oldcolor, fillcolor);
     }
 }
 
-int main() {
+void main() {
+    clrscr();
     int gd = DETECT, gm;
-    int x = 100, y = 100;
-    int fillColor = RED;
-    int oldColor;
+    initgraph(&gd, &gm, "C://TURBOC3//BGI");
+    setcolor(BLUE);
+    setfillstyle(SOLID_FILL, RED);
+    rectangle(40, 40, 100, 100); // Draw a square
 
-    initgraph(&gd, &gm, "C:\\Turboc3\\BGI");
-    rectangle(50, 50, 200, 150);
+    // Call the flood-fill function starting from a point inside the square
+    floodfill(55, 55, getpixel(55, 55), RED);
 
-    oldColor = getpixel(x, y);
-
-    floodFill(x, y, fillColor, oldColor);
-
-    delay(5000);
+    getch();
     closegraph();
-    return 0;
 }
