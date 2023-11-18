@@ -1,71 +1,61 @@
-#include <graphics.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include<dos.h>
+#include<stdio.h>
+#include<graphics.h>
+#include<conio.h>
 
-void drawEllipse(int x_center, int y_center, int rx, int ry) {
-    int x, y, rxSquare, rySquare, twoRxSquare, twoRySquare, p, xEnd, yEnd;
-    
+void main()
+{
     int gd = DETECT, gm;
-    initgraph(&gd, &gm, "C:\\Turboc3\\BGI");
-
+    float p, x, y, xc, yc, a, b;
+    initgraph(&gd, &gm, "C:\\TURBOC3\\BGI");
+    cleardevice();
+    printf("Enter xc, yc:\n");
+    scanf("%f%f", &xc, &yc);
+    printf("Enter a, b:\n");
+    scanf("%f%f", &a, &b);
     x = 0;
-    y = ry;
-    rxSquare = rx * rx;
-    rySquare = ry * ry;
-    twoRxSquare = 2 * rxSquare;
-    twoRySquare = 2 * rySquare;
+    y = b;
 
     // Region 1
-    p = rySquare - rxSquare * ry + 0.25 * rxSquare;
-    xEnd = 0;
-    yEnd = twoRxSquare * y;
-
-    while (xEnd <= yEnd) {
-        putpixel(x + x_center, y + y_center, WHITE);
-        putpixel(-x + x_center, y + y_center, WHITE);
-        putpixel(x + x_center, -y + y_center, WHITE);
-        putpixel(-x + x_center, -y + y_center, WHITE);
-
-        x++;
-        xEnd += twoRySquare;
+    p = (b * b) - (a * a * b) + (0.25 * a * a);
+    do
+    {
+        putpixel(xc + x, yc + y, WHITE);
+        putpixel(xc + x, yc - y, WHITE);
+        putpixel(xc - x, yc + y, WHITE);
+        putpixel(xc - x, yc - y, WHITE);
         if (p < 0)
-            p += rySquare + xEnd;
-        else {
-            y--;
-            yEnd -= twoRxSquare;
-            p += rySquare + xEnd - yEnd;
+        {
+            x = x + 1;
+            p = p + 2 * b * b * x + b * b;
         }
-    }
+        else
+        {
+            x = x + 1;
+            y = y - 1;
+            p = p + 2 * b * b * x - 2 * a * a * y + b * b;
+        }
+    } while (2 * b * b * x < 2 * a * a * y);
 
     // Region 2
-    p = rySquare * (x + 0.5) * (x + 0.5) + rxSquare * (y - 1) * (y - 1) - rxSquare * rySquare;
-
-    while (y > 0) {
-        putpixel(x + x_center, y + y_center, WHITE);
-        putpixel(-x + x_center, y + y_center, WHITE);
-        putpixel(x + x_center, -y + y_center, WHITE);
-        putpixel(-x + x_center, -y + y_center, WHITE);
-
-        y--;
-        yEnd -= twoRxSquare;
+    p = (b * b * (x + 0.5) * (x + 0.5)) + ((y - 1) * (y - 1) * a * a - a * a * b * b);
+    do
+    {
+        putpixel(xc + x, yc + y, WHITE);
+        putpixel(xc + x, yc - y, WHITE);
+        putpixel(xc - x, yc + y, WHITE);
+        putpixel(xc - x, yc - y, WHITE);
         if (p > 0)
-            p += rxSquare - yEnd;
-        else {
-            x++;
-            xEnd += twoRySquare;
-            p += rxSquare + xEnd - yEnd;
+        {
+            y = y - 1;
+            p = p - 2 * a * a * y + a * a;
         }
-    }
+        else
+        {
+            x = x + 1;
+            y = y - 1;
+            p = p - 2 * a * a * y + 2 * b * b * x + a * a;
+        }
+    } while (y != 0);
 
-    delay(5000);
-    closegraph();
-}
-
-int main() {
-    int x_center = 200, y_center = 200;
-    int rx = 150, ry = 100;
-
-    drawEllipse(x_center, y_center, rx, ry);
-    return 0;
+    getch();
 }
