@@ -1,70 +1,47 @@
-#include <stdio.h>
-#include <graphics.h>
-#include <conio.h>
-#include <dos.h>
-
-void delay(unsigned int ms);
-void drawLine(int x1, int y1, int x2, int y2);
-
-int main() {
-    int x1, y1, x2, y2;
-
-    printf("Enter starting point (x1 y1) & (x2,y2) : ");
-    scanf("%d %d %d %d", &x1, &y1, &x2, &y2);
-
-    int gd = DETECT, gm;
-    initgraph(&gd, &gm, "C://TURBOC3//BGI");
-
-    drawLine(x1, y1, x2, y2);
-
-    getch();  // Wait for a key press before closing the graphics window
-
-    closegraph();
-    return 0;
-}
-
-void drawLine(int x1, int y1, int x2, int y2) {
+#include<stdio.h>
+#include<graphics.h>
+#include<stdlib.h>
+#include<conio.h>
+void drawLine(int x0, int y0, int x1, int y1)
+{
     int dx, dy, p, x, y;
 
-    dx = x2 - x1;
-    dy = y2 - y1;
+    dx = abs(x1 - x0);
+    dy = abs(y1 - y0);
+    p = 2 * dy - dx;
+    x = x0;
+    y = y0;
 
-    x = x1;
-    y = y1;
+    while (x <= x1)  // Change this condition to ensure the loop stops after reaching x1
+    {
+        putpixel(x, y, 15); // Assuming color 15 for the line
 
-    putpixel(x, y, 15); // Assuming color 15 for the line
-
-    if (dx >= dy) {
-        p = 2 * dy - dx;
-
-        while (x < x2) {
-            x++;
-
-            if (p < 0)
-                p = p + 2 * dy;
-            else {
-                p = p + 2 * dy - 2 * dx;
-                y++;
-            }
-
-            putpixel(x, y, 15); // Assuming color 15 for the line
-            delay(10); // Optional delay
-        }
-    } else {
-        p = 2 * dx - dy;
-
-        while (y < y2) {
+        if (p >= 0)
+        {
             y++;
-
-            if (p < 0)
-                p = p + 2 * dx;
-            else {
-                p = p + 2 * dx - 2 * dy;
-                x++;
-            }
-
-            putpixel(x, y, 15); // Assuming color 15 for the line
-            delay(10); // Optional delay
+            p = p - 2 * dx;  // Corrected the sign here
         }
+
+        p = p + 2 * dy;
+        x++;
     }
+}
+
+int main()
+{
+    int gd = DETECT, gm, x0, y0, x1, y1;
+
+    initgraph(&gd, &gm, "C:\\TURBOC3\\BGI");
+
+    printf("Enter coordinates of the first point: ");
+    scanf("%d %d", &x0, &y0);
+
+    printf("Enter coordinates of the second point: ");
+    scanf("%d %d", &x1, &y1);
+
+    drawLine(x0, y0, x1, y1);
+
+    getch();
+    closegraph();
+    return 0;
 }
