@@ -2,17 +2,17 @@
 #include<graphics.h>
 #include<stdlib.h>
 #include<conio.h>
-void drawLine(int x0, int y0, int x1, int y1)
+void drawLine(int x1, int y1, int x2, int y2)
 {
     int dx, dy, p, x, y;
 
-    dx = abs(x1 - x0);
-    dy = abs(y1 - y0);
+    dx = abs(x2 - x1);
+    dy = abs(y2 - y1);
     p = 2 * dy - dx;
-    x = x0;
-    y = y0;
+    x = x1;
+    y = y1;
 
-    while (x <= x1)  // Change this condition to ensure the loop stops after reaching x1
+    while (x <= x2)  // Change this condition to ensure the loop stops after reaching x1
     {
         putpixel(x, y, 15); // Assuming color 15 for the line
 
@@ -29,17 +29,17 @@ void drawLine(int x0, int y0, int x1, int y1)
 
 int main()
 {
-    int gd = DETECT, gm, x0, y0, x1, y1;
+    int gd = DETECT, gm, x1, y1, x2, y2;
 
     initgraph(&gd, &gm, "C:\\TURBOC3\\BGI");
 
     printf("Enter coordinates of the first point: ");
-    scanf("%d %d", &x0, &y0);
-
-    printf("Enter coordinates of the second point: ");
     scanf("%d %d", &x1, &y1);
 
-    drawLine(x0, y0, x1, y1);
+    printf("Enter coordinates of the second point: ");
+    scanf("%d %d", &x2, &y2);
+
+    drawLine(x1, y1, x2, y2);
 
     getch();
     closegraph();
