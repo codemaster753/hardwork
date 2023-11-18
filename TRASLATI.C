@@ -2,6 +2,8 @@
 #include<stdlib.h>
 #include<math.h>
 #include<graphics.h>
+#include<conio.h>
+
 void main(){
 {
 int gd=DETECT,gm;
