@@ -1,12 +1,30 @@
 #include <stdio.h>
 #include <graphics.h>
+#include <conio.h>
+#include <dos.h>
 
 void delay(unsigned int ms);
+void drawLine(int x1, int y1, int x2, int y2);
+
+int main() {
+    int x1, y1, x2, y2;
+
+    printf("Enter starting point (x1 y1) & (x2,y2) : ");
+    scanf("%d %d %d %d", &x1, &y1, &x2, &y2);
+
+    int gd = DETECT, gm;
+    initgraph(&gd, &gm, "C://TURBOC3//BGI");
+
+    drawLine(x1, y1, x2, y2);
+
+    getch();  // Wait for a key press before closing the graphics window
+
+    closegraph();
+    return 0;
+}
 
 void drawLine(int x1, int y1, int x2, int y2) {
-    int gd = DETECT, gm;
     int dx, dy, p, x, y;
-    initgraph(&gd, &gm, "C://TURBOC3//BGI");
 
     dx = x2 - x1;
     dy = y2 - y1;
@@ -49,26 +67,4 @@ void drawLine(int x1, int y1, int x2, int y2) {
             delay(10); // Optional delay
         }
     }
-
-    closegraph();
-}
-
-int main() {
-    int x1, y1, x2, y2;
-
-    printf("Enter starting point (x1 y1) & (x2,y2) : ");
-    scanf("%d %d %d %d", &x1, &y1, &x2, &y2);
-
-
-
-    drawLine(x1, y1, x2, y2);
-
-    return 0;
-}
-
-void delay(unsigned int ms) {
-    unsigned int i, j;
-    for (i = 0; i < ms; i++)
-        for (j = 0; j < 1275; j++)
-            ; // Burn some CPU cycles
 }
