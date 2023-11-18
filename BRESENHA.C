@@ -25,9 +25,9 @@ void drawLine(int x1, int y1,int x2, int y2)
 	}
 	else {
             putpixel(x,y,15);
-    delay(10);
-	p = p + 2 * dy;
-	x++;
+            delay(10);
+	    p = p + 2 * dy;
+	    x++;
     }
 }}
 
