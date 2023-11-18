@@ -1,6 +1,7 @@
 #include <graphics.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include<dos.h>
 
 void drawEllipse(int x_center, int y_center, int rx, int ry) {
     int x, y, rxSquare, rySquare, twoRxSquare, twoRySquare, p, xEnd, yEnd;
