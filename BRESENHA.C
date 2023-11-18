@@ -2,9 +2,9 @@
 #include<graphics.h>
 #include<stdlib.h>
 #include<conio.h>
-void drawLine(int x1, int y1, int x2, int y2)
-{
-    int dx, dy, p, x, y;
+#include<dos.h>
+void drawLine(int x1, int y1,int x2, int y2)
+{int dx, dy, p, x, y;
 
     dx = abs(x2 - x1);
     dy = abs(y2 - y1);
@@ -12,24 +12,28 @@ void drawLine(int x1, int y1, int x2, int y2)
     x = x1;
     y = y1;
 
-    while (x <= x2)  // Change this condition to ensure the loop stops after reaching x1
+    while (x <= x2)  // Change this condition to ensure the loop stops after reaching x2
     {
-        putpixel(x, y, 15); // Assuming color 15 for the line
+	putpixel(x, y, 15); // Assuming color 15 for the line
 
-        if (p >= 0)
-        {
-            y++;
-            p = p - 2 * dx;  // Corrected the sign here
-        }
-
-        p = p + 2 * dy;
-        x++;
+	if (p >= 0)
+	{
+	    putpixel(x,y,15);
+	    delay(10);
+	    y++;
+	    p = p - 2 * dx;  // Corrected the sign here
+	}
+	else {
+            putpixel(x,y,15);
+    delay(10);
+	p = p + 2 * dy;
+	x++;
     }
-}
+}}
 
 int main()
 {
-    int gd = DETECT, gm, x1, y1, x2, y2;
+    int gd = DETECT, gm, x2, y2, x1, y1;
 
     initgraph(&gd, &gm, "C:\\TURBOC3\\BGI");
 
