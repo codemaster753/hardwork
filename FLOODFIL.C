@@ -6,9 +6,9 @@
 
 void floodFill(int x, int y, int oldcolor, int fillcolor) {
     if (getpixel(x, y) != fillcolor && getpixel(x, y) == oldcolor) {
-        delay(1);
 
         putpixel(x, y, fillcolor);
+        delay(1);
 
         floodFill(x + 1, y, oldcolor, fillcolor);
         floodFill(x - 1, y, oldcolor, fillcolor);
