@@ -49,13 +49,7 @@ void midPointCircle(int xc, int yc, int radius)
 int main()
 {
     int gd = DETECT, gm, xc, yc, radius;
-
-    printf("Enter the center coordinates (xc yc): ");
-    scanf("%d %d", &xc, &yc);
-
-    printf("Enter the radius: ");
-    scanf("%d", &radius);
-
+    xc=100,yc=100,radius=10;
     initgraph(&gd, &gm, "C:\\TURBOC3\\BGI");
 
     midPointCircle(xc, yc, radius);
