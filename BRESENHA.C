@@ -14,18 +14,15 @@ void drawLine(int x1, int y1,int x2, int y2)
 
     while (x <= x2)  // Change this condition to ensure the loop stops after reaching x2
     {
-	putpixel(x, y, 15); // Assuming color 15 for the line
+	putpixel(x, y, 15);// Assuming color 15 for the line
+        delay(10);
 
 	if (p >= 0)
 	{
-	    putpixel(x,y,15);
-	    delay(10);
-	    y++;
 	    p = p - 2 * dx;  // Corrected the sign here
-	}
+	    y++;
+        }
 	else {
-            putpixel(x,y,15);
-            delay(10);
 	    p = p + 2 * dy;
 	    x++;
     }
