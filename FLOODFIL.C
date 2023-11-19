@@ -25,11 +25,7 @@ int main() {
     int gd = DETECT, gm;
     initgraph(&gd, &gm, "C:\\Turboc3\\BGI");
 
-    setcolor(BLUE);
-    setfillstyle(SOLID_FILL, RED);
     rectangle(40, 40, 100, 100);
-
-    // Call the flood-fill function starting from a point inside the square
     floodFill(55, 55, getpixel(55, 55), RED);
 
     getch();
