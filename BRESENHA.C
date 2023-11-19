@@ -4,7 +4,7 @@
 #include<conio.h>
 #include<dos.h>
 void drawLine(int x1, int y1,int x2, int y2)
-{int dx, dy, p, x, y;
+{int dx, dy, p;
 
     dx = abs(x2 - x1);
     dy = abs(y2 - y1);
