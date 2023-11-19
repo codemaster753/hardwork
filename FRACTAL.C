@@ -6,7 +6,7 @@
 
 #define SIN 0.866
 
-void koch(int x1, int y1, int x2, int y2, int m) {
+void fractal(int x1, int y1, int x2, int y2, int m) {
     int xx, yy, x[5], y[5], offx = 50, offy = 300, lx, ly;
     lx = (x2 - x1) / 3;
     ly = (y2 - y1) / 3;
@@ -23,10 +23,10 @@ void koch(int x1, int y1, int x2, int y2, int m) {
     x[2] = x[1] + xx * cos(60 * M_PI / 180) - yy * sin(60 * M_PI / 180);
     y[2] = y[1] + xx * sin(60 * M_PI / 180) + yy * cos(60 * M_PI / 180);
     if (m > 0) {
-        koch(x[0], y[0], x[1], y[1], m - 1);
-        koch(x[1], y[1], x[2], y[2], m - 1);
-        koch(x[2], y[2], x[3], y[3], m - 1);
-        koch(x[3], y[3], x[4], y[4], m - 1);
+        fractal(x[0], y[0], x[1], y[1], m - 1);
+        fractal(x[1], y[1], x[2], y[2], m - 1);
+        fractal(x[2], y[2], x[3], y[3], m - 1);
+        fractal(x[3], y[3], x[4], y[4], m - 1);
     } else {
         line(offx + x[0], offy - y[0], offx + x[1], offy - y[1]);
         line(offx + x[1], offy - y[1], offx + x[2], offy - y[2]);
@@ -42,7 +42,7 @@ void main() {
     x1 = 10, x2 = 550, y1 = 0, y2 = 0;
     printf("\nEnter the level of curve generation");
     scanf("%d", &n);
-    koch(x1, y1, x2, y2, n);
+    fractal(x1, y1, x2, y2, n);
     getch();
     closegraph();
 }
