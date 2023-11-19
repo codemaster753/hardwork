@@ -1,33 +1,47 @@
-#include <stdio.h>
-#include <conio.h>
-#include <graphics.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<conio.h>
+#include<graphics.h>
+#include<math.h>
+#include<dos.h>
 
-void main() {
-    int gd = DETECT, gm, i;
-    float x, y, steps, dx, dy, x1, x2, y1, y2;
-    initgraph(&gd, &gm, "C:\\TURBOC3\\BGI");
-    x1 = 100, y1 = 100, x2 = 400, y2 = 300;
-    dx = (float)(x2 - x1);
-    dy = (float)(y2 - y1);
-    if (dx >= dy) {
-        steps = dx;
-    } else {
-        steps = dy;
-    }
-    dx = dx / steps;
-    dy = dy / steps;
+void drawLine(int x1,int y1,int x2,int y2){
+int i, x, y, steps;
+int dx = (float)(x2 - x1) / 2;
+int dy = (float)(y2 - y1) / 2;
 
-    // Initialize x and y here
-    x = x1;
-    y = y1;
+if(dx>=dy){
+steps = dx;
+}
+else{
+steps = dy;
+}
 
-    for (i = 1; i <= steps; i++) {
-        putpixel((int)x, (int)y, RED);  // Convert x and y to integers for putpixel
+dx = dx / steps;
+dy = dy / steps;
 
-        x += dx;
-        y += dy;
-    }
+x = x1;
+y = y1;
 
-    getch();  // Wait for a key press before closing the graphics window
-    closegraph();
+for(i = 0; i <= steps; i++){
+putpixel(x,y,RED);
+delay(5);
+x += dx;
+y += dy;
+}
+}
+void main(){
+
+int gd = DETECT, gm;
+int x1,y1,x2,y2;
+initgraph(&gd,&gm,"C:\\TURBOC3\\BGI");
+printf("enter coordinates of 1st point\n");
+scanf("%d %d",&x1,&y1);
+printf("enter coordinates of 2nd point\n");
+scanf("%d %d",&x2,&y2);
+
+drawLine(x1,y1,x2,y2);
+
+getch();
+closegraph();
 }
