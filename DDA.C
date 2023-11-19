@@ -32,11 +32,7 @@ void main(){
 int gd = DETECT, gm;
 int x1,y1,x2,y2;
 initgraph(&gd,&gm,"C:\\TURBOC3\\BGI");
-printf("enter coordinates of 1st point\n");
-scanf("%d %d",&x1,&y1);
-printf("enter coordinates of 2nd point\n");
-scanf("%d %d",&x2,&y2);
-
+x1=100,y1=100,x2=300,y2=300;
 drawLine(x1,y1,x2,y2);
 
 getch();
