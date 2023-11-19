@@ -5,9 +5,9 @@
  #include<dos.h>
  void boundaryfill(int x, int y, int boundary, int fill)
  {
+ fill=15;
  if((getpixel(x,y) != boundary) && (getpixel(x,y) != fill))
  {
- setcolor(fill);
  putpixel(x,y,fill);
  delay(5);
  boundaryfill(x+1,y,fill,boundary);
@@ -20,7 +20,6 @@
  {
  int gd= DETECT,gm;
  initgraph(&gd,&gm,"C://TURBOC3//BGI");
- setcolor(10);
  rectangle(250,200,310,260);
  boundaryfill(280,250,12,10);
  getch();
