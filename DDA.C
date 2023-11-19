@@ -6,9 +6,9 @@
 #include<dos.h>
 
 void drawLine(int x1,int y1,int x2,int y2){
-int i, x, y, steps;
-int dx = (float)(x2 - x1) / 2;
-int dy = (float)(y2 - y1) / 2;
+int i,steps;
+int dx = (x2 - x1) / 2;
+int dy = (y2 - y1) / 2;
 
 if(dx>=dy){
 steps = dx;
@@ -20,14 +20,11 @@ steps = dy;
 dx = dx / steps;
 dy = dy / steps;
 
-x = x1;
-y = y1;
-
 for(i = 0; i <= steps; i++){
-putpixel(x,y,RED);
+putpixel(x1,y1,RED);
 delay(5);
-x += dx;
-y += dy;
+x1 += dx;
+y1 += dy;
 }
 }
 void main(){
@@ -45,3 +42,4 @@ drawLine(x1,y1,x2,y2);
 getch();
 closegraph();
 }
+
