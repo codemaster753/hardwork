@@ -4,8 +4,6 @@
 #include <math.h>
 #include <conio.h>
 
-#define SIN 0.866
-
 void fractal(int x1, int y1, int x2, int y2, int m) {
     int xx, yy, x[5], y[5], offx = 50, offy = 300, lx, ly;
     lx = (x2 - x1) / 3;
