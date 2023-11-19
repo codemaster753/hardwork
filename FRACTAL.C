@@ -20,7 +20,7 @@ void fractal(int x1, int y1, int x2, int y2, int m) {
     y[3] = y[0] + 2 * ly;
     xx = x[3] - x[1];
     yy = y[3] - y[1];
-    x[2] = x[1] + xx * cos(60 * M_PI / 180) - yy * sin(60 * M_PI / 180);
+    x[2] = x[1] + xx * cos(60 * M_PI / 180) - yy * sin(60 * M_PI / 180); //60 degrees = 1.047 radians
     y[2] = y[1] + xx * sin(60 * M_PI / 180) + yy * cos(60 * M_PI / 180);
     if (m > 0) {
         fractal(x[0], y[0], x[1], y[1], m - 1);
