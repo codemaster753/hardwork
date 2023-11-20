@@ -1,65 +1,76 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int n, top = -1, *stack;
+void main(){
+int top = -1, stack[5]; //size of array kept as 5 i.e N
+int ch;
 
-void push(int x) {
-    if (top == n - 1)
-        return; // Stack is full
-    stack[++top] = x;
-}
+do{
+prinf("Enter choice:1.push\n2.pop\n3.peek\n4.display\n");
+scanf("%d",&ch);
 
-int pop() {
-    if (top == -1)
-        return -1; // Stack is empty
-    return stack[top--];
-}
+switch(ch){
 
-int peek() {
-    if (top == -1)
-        return -1; // Stack is empty
-    return stack[top];
-}
-
-void display() {
-    for (int i = top; i > -1; i--)
-        printf("%d ", stack[i]);
-    printf("\n\n");
-}
-
-int main() {
-    n = 10;
-
-    printf("Initializing the stack with size 10\n\n");
-
-    stack = (int *)malloc(n * sizeof(int));
-
-    if (stack == NULL) {
-        printf("Memory allocation failed. Exiting...\n");
-        return -1;
+case 1:
+void push(){
+int x;
+    printf("Enter number you want to push");
+    scanf("%d",&x);
+    if (top == 4){  //N-1 i.e 5-1
+    printf("overflow");
     }
+    else{
+    top++;
+    stack[top]=x;
+    }
+break;
 
-    printf("Pushing elements into the stack\n1\n2\n3\n\n");
+case 2:
+void pop(){
+    int item;  //item created to store the popped element inorder to display it
+    if(top == -1){
+    printf("underflow");
+    }
+    else{
+    item = stack[top];
+    top--;
+    printf("The popped element is:%d",item);
+break;
 
-    push(1);
-    push(2);
-    push(3);
+case 3:
+    void peek(){
+    if(top == -1){
+    printf("underflow");
+    }
+    else{
+    printf("Top element of stack is:%d",stack[top]);
+    }
+break;
 
-    printf("Displaying elements of the stack -\n");
+case 4:
+    void display(){
+    int i;
+    for(i=top;i>=0;i--){
+    printf("ELements of stack are:\n");
+    printf("%d",stack[i]);
+    }
+break;
 
-    display();
-
-    printf("The top of the stack = %d\n\n", peek());
-
-    printf("Pop the top of the stack = %d\n\n", pop());
-
-    printf("Pop the top of the stack = %d\n\n", pop());
-
-    printf("Displaying elements of the stack -\n");
-    display();
-
-    // Free the dynamically allocated memory
-    free(stack);
-
-    return 0;
+case 5:
+default:
+printf("Invalid choice");
 }
+}
+while(ch!=0);
+return 0;
+}
+
+    
+    
+
+    
+    
+
+
+
+        
