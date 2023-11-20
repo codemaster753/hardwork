@@ -6,7 +6,7 @@ void push(int x) {
     } else {
         top++;
         stack[top]=x;
-        printf("Pushed: %d\n",x");
+        printf("Pushed: %d\n",x);
     }
 }
 void pop() {
