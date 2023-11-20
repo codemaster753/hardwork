@@ -1,49 +1,59 @@
-#include <stdio.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<conio.h>
+#include<math.h>
+
 int top = -1, stack[5];
-void push(int x) {
-    if (top == 4) {
-        printf("Stack overflow");
-    } else {
-        top++;
-        stack[top]=x;
-        printf("Pushed: %d\n",x);
-    }
-}
-void pop() {
-    int item;
-    if (top == -1) {
-        printf("Stack is empty.");
-    } else {
-        item = stack[top];
-        top--;
-        printf("Popped: %d\n", item);
-    }
-}
-void peek(){
-    if(top == -1){
-    printf("satck is empty");
+
+void push(int x){
+    if(top == 4){
+        printf("stack is full\n");
     }
     else{
-    printf("Top element is:%d",stack[top]);
+        top++;
+        stack[top]=x;
     }
 }
-void display() {
-    if (top == -1) {
-        printf("Stack is empty\n");
-    } else {
-        for (int i = top; i >= 0; i--) {
-            printf("%d\n", stack[i]);
+
+void pop(){
+    int item;
+    if(top == -1){
+        printf("stack is empty\n");
+    }
+    else{
+        item = stack[top];
+        top--;
+        printf("popped element:%d\n",item);
+    }
+}
+
+void peek(){
+    if(top == -1){
+        printf("stack is empty\n");
+    }
+    else{
+        printf("stack top is:%d\n",stack[top]);
+    }
+}
+
+void display(){
+    int i;
+     if(top == -1){
+        printf("stack is empty\n");
+    }
+    else{
+        for(i=top;i>=0;i--){
+            printf("%d\n",stack[i]);
         }
     }
 }
-int main() {
-    push(5);
-    push(10);
-    push(15);
+
+void main(){
+    push(1);
+    push(2);
+    push(3);
     display();
     pop();
-    pop();
-    pop();
+    peek();
     display();
-    return 0;
 }
