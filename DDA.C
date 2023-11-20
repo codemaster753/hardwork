@@ -7,8 +7,8 @@
 
 void drawLine(int x1,int y1,int x2,int y2){
 int i,steps;
-int dx = (x2 - x1) / 2;
-int dy = (y2 - y1) / 2;
+int dx = (x2 - x1);
+int dy = (y2 - y1);
 
 if(dx>=dy){
 steps = dx;
