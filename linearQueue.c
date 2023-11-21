@@ -4,8 +4,6 @@
 
 int main() {
     int queue[n], ch = 1, front = 0, rear = 0;
-
-    printf("Queue using Array");
     printf("\n1.Insertion \n2.Deletion \n3.Display \n4.Exit");
 
     while (ch) {
