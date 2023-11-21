@@ -1,64 +1,42 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#define N 50 //max vertices
+#include<stdio.h>
+int adj[10][10]={0},visited[10]={0},n; //n is no of nodes
 
-struct Graph {
-    int V;
-    bool adj[N][N];
-};
-
-struct Graph* createGraph(int V) {
-    struct Graph* g = (struct Graph*)malloc(sizeof(struct Graph));
-    g->V = V;
-    for (int i = 0; i < V; i++) {
-        for (int j = 0; j < V; j++) {
-            g->adj[i][j] = false;
-        }
-    }
-    return g;
+void bfs(int node)
+{
+	int q[20],f=-1,r=-1,i,nd;
+	
+	visited[node]=1;
+	q[++r]=node;
+	while(f!=r)
+	{
+		nd=q[++f];
+		printf("\t%d",nd);
+		for(i=0;i<n;i++)
+		{
+			if(adj[nd][i]==1 && visited[i]==0)
+			{
+				visited[i]=1;
+				q[++r]=i;
+			}
+		}
+	}
 }
-
-void destroyGraph(struct Graph* g) {
-    free(g);
-}
-
-void addEdge(struct Graph* g, int v, int w) {
-    g->adj[v][w] = true;
-}
-
-void BFS(struct Graph* g, int s) {
-    bool visited[N] = {false};
-    int queue[N];
-    int front = 0, rear = 0;
-    visited[s] = true;
-    queue[rear++] = s;
-
-    while (front != rear) {
-        s = queue[front++];
-        printf("%d ", s);
-
-        for (int adjacent = 0; adjacent < g->V; adjacent++) {
-            if (g->adj[s][adjacent] && !visited[adjacent]) {
-                visited[adjacent] = true;
-                queue[rear++] = adjacent;
-            }
-        }
-    }
-}
-
-int main() {
-    struct Graph* g = createGraph(4);
-    addEdge(g, 0, 1);
-    addEdge(g, 0, 2);
-    addEdge(g, 1, 2);
-    addEdge(g, 2, 0);
-    addEdge(g, 2, 3);
-    addEdge(g, 3, 3);
-
-    printf("Following BFS traversal from vertex 2: ");
-    BFS(g, 2);
-
-    destroyGraph(g);
-    return 0;
+int main()
+{
+	int e,i,v1,v2,node;
+	printf("\nEnter nos of nodes=");
+	scanf("%d",&n);
+	printf("\nEnter nos of edges=");
+	scanf("%d",&e);
+	printf("\nEnter edge details\n");
+	for(i=0;i<e;i++)
+	{
+		printf("\nEnter edge=");
+		scanf("%d%d",&v1,&v2);
+		adj[v1][v2]=adj[v2][v1]=1;
+	}
+	printf("\nEnter starting vertex=");
+	scanf("%d",&node);
+	bfs(node);
+	return 0;
 }
