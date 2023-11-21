@@ -17,7 +17,8 @@ int main() {
                 }
                 else {
                     printf("\n Enter no :");
-                    scanf("%d", &queue[++rear]);
+                    scanf("%d", &queue[rear]);
+                    rear++;
                 }
                 break;
 
