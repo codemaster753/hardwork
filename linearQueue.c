@@ -22,7 +22,7 @@ int main() {
                 break;
 
             case 2:
-                if (front == -1 && rear == -1) {
+                if (front == 0 && rear == 0) {
                     printf("\n Queue is empty");
                 } 
                 else {
@@ -33,7 +33,7 @@ int main() {
 
             case 3:
                 printf("\nQueue Elements are:\n ");
-                if (front == -1 && rear == -1){
+                if (front == 0 && rear == 0){
                     printf("\n Queue is Empty");
                 }
                 else {
